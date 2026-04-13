@@ -1,0 +1,23 @@
+describe('SauceDemo Login Test', () => {
+
+  it('Valid Login', () => {
+    cy.visit('https://www.saucedemo.com')
+
+    cy.get('#user-name').type('standard_user')
+    cy.get('#password').type('secret_sauce')
+    cy.get('#login-button').click()
+
+    cy.url().should('include', 'inventory')
+  })
+
+  it('Invalid Login', () => {
+    cy.visit('https://www.saucedemo.com')
+
+    cy.get('#user-name').type('wrong')
+    cy.get('#password').type('wrong')
+    cy.get('#login-button').click()
+
+    cy.contains('Epic sadface')
+  })
+
+})
